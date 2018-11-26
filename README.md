@@ -1,5 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Install
+
+```
+npm i axios babel-cli body-parser express ejs mongoose nodemon react-bootstrap react-modal react-router-dom --save
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
