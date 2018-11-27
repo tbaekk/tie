@@ -1,0 +1,9 @@
+.Game {
+  font-family: "Raleway", serif;
+  border: 2px solid #F7F9F9;
+  height: auto;
+  width: 160px;
+  margin: 5px 0px 10px 0px;
+  padding: 6px;
+  display: inline-block;
+}

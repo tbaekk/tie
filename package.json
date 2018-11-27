@@ -18,11 +18,8 @@
     "react-scripts": "2.1.1"
   },
   "scripts": {
-    "dev": "webpack --mode development",
-    "start": "npm run dev && nodemon --exec babel-node bin/www",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "webpack": "webpack --mode development",
+    "start": "npm run webpack && nodemon -L --exec babel-node bin/www --verbose"
   },
   "eslintConfig": {
     "extends": "react-app"
