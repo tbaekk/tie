@@ -10,6 +10,7 @@ class Game extends Component {
       author: '',
       link: ''
     }
+    this.onClick = this.onClick.bind(this);
   }
 
   componentDidMount() {
@@ -27,11 +28,15 @@ class Game extends Component {
     });
   }
 
+  onClick(e) {
+    
+  }
+
   render() {
     return(
       <div className="Game">
         <h1> {this.state.name} </h1>
-        <img src={this.state.link} height="80"/>
+        <img src={this.state.link} onClick={this.onClick}/>
         <p>By - {this.state.author} </p>
       </div>
     );

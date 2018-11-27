@@ -1,15 +1,45 @@
-/** Headings **/
-h1, h2, h3, h4, h5, h6 { font-family: "Raleway", serif; font-weight: 400; }
-
 .App {
   text-align: center;
 }
 
-.App-games {
-  background-color: white;
-  min-height: 100vh;
-  display: block;
-  justify-content: center;
-  flex-direction: horizontal;
-  font-size: calc(10px + 2vmin);
+.App-container {
+  background-color: #F7F9F9;
+  height: 100vh;
+}
+
+/** Wrapper */
+.App-games { 
+  max-width: -webkit-calc(80% - (30px * 2));
+  max-width: calc(80% - (30px * 2));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 30px;
+}
+@media screen and (max-width: 80%) { .App-games { max-width: -webkit-calc(80% - (30px)); max-width: calc(80% - (30px)); padding-right: 15px; padding-left: 15px; } }
+
+/** Clearfix */
+.App-games:after, .footer-col-App-games:after { content: ""; display: table; clear: both; }
+
+.App-header {
+  padding: 40px;
+}
+
+.form {
+  width: 50%;
+  margin: 0;
+  display: inline-block;
+  vertical-align: baseline;
+  margin-left: 50px;
+}
+
+.image {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.App-logo {
+  width: 125px;
+  height: auto;
 }

@@ -1,9 +1,23 @@
 .Game {
   font-family: "Raleway", serif;
-  border: 2px solid #F7F9F9;
   height: auto;
-  width: 160px;
-  margin: 5px 0px 10px 0px;
+  width: 400px;
+  margin: 5px 15px 10px 15px;
   padding: 6px;
   display: inline-block;
+}
+
+.Game:hover {
+  background-color: #e0e2e4;
+}
+
+.Game img {
+  width: 200px;
+  height: 150px;
+}
+
+.Game p {
+  color: #828282;
+  font-size: 14px;
+  font-family: "Raleway", serif;
 }
