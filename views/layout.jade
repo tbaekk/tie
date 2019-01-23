@@ -7,45 +7,23 @@ html( lang = "en")
     meta(name='description', content='')
     meta(name='author', content='')
     // Bootstrap core CSS
-    link(href='vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='https://bootswatch.com/4/minty/bootstrap.min.css')
     // Custom fonts for this template
-    link(href='/vendor/fontawesome-free/css/all.min.css', rel='stylesheet')
-    link(href='vendor/simple-line-icons/css/simple-line-icons.css', rel='stylesheet', type='text/css')
-    link(href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.6.3/css/all.css',
+      integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/',
+      crossorigin='anonymous')
     // Custom styles for this template
     link(href='stylesheets/landing-page.min.css', rel='stylesheet')
   body
-    .container
-      script( src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' )
-      script( src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js' )
     block content
-    // Footer
-    footer.footer.bg-light
-      .container
-        .row
-          .col-lg-6.h-100.text-center.text-lg-left.my-auto
-            ul.list-inline.mb-2
-              li.list-inline-item
-                a(href='#') About
-              li.list-inline-item ⋅
-              li.list-inline-item
-                a(href='#') Contact
-              li.list-inline-item ⋅
-              li.list-inline-item
-                a(href='#') Terms of Use
-              li.list-inline-item ⋅
-              li.list-inline-item
-                a(href='#') Privacy Policy
-            p.text-muted.small.mb-4.mb-lg-0 © Tie 2018. All Rights Reserved.
-          .col-lg-6.h-100.text-center.text-lg-right.my-auto
-            ul.list-inline.mb-0
-              li.list-inline-item.mr-3
-                a(href='#')
-                  i.fab.fa-facebook.fa-2x.fa-fw
-              li.list-inline-item.mr-3
-                a(href='#')
-                  i.fab.fa-twitter-square.fa-2x.fa-fw
-              li.list-inline-item
-                a(href='#')
-                  i.fab.fa-instagram.fa-2x.fa-fw
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js',
+      integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo',
+      crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js',
+      integrity='sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut',
+      crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js',
+      integrity='sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k',
+      crossorigin='anonymous')
+
 

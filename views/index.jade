@@ -5,7 +5,7 @@ block content
   nav.navbar.navbar-light.bg-light.static-top
     .container
       a.navbar-brand(href='#') #{title}
-      a.btn.btn-primary(href='#') Sign In
+      a.btn.btn-primary.my-2.my-sm-0(href='/users/login') Sign In
   // Icons Grid
   section.features-icons.text-center
     .container
@@ -46,3 +46,32 @@ block content
               i.icon-check.m-auto.text-primary
             h3 Easy to Use
             p.lead.mb-0 Ready to use with your own content, or customize the source files!
+  // Footer
+  footer.footer.bg-light
+    .container
+      .row
+        .col-lg-6.h-100.text-center.text-lg-left.my-auto
+          ul.list-inline.mb-2
+            li.list-inline-item
+              a(href='#') About
+            li.list-inline-item ⋅
+            li.list-inline-item
+              a(href='#') Contact
+            li.list-inline-item ⋅
+            li.list-inline-item
+              a(href='#') Terms of Use
+            li.list-inline-item ⋅
+            li.list-inline-item
+              a(href='#') Privacy Policy
+          p.text-muted.small.mb-4.mb-lg-0 © Tie 2018. All Rights Reserved.
+        .col-lg-6.h-100.text-center.text-lg-right.my-auto
+          ul.list-inline.mb-0
+            li.list-inline-item.mr-3
+              a(href='#')
+                i.fab.fa-facebook.fa-2x.fa-fw
+            li.list-inline-item.mr-3
+              a(href='#')
+                i.fab.fa-twitter-square.fa-2x.fa-fw
+            li.list-inline-item
+              a(href='#')
+                i.fab.fa-instagram.fa-2x.fa-fw
