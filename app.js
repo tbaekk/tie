@@ -1,26 +1,32 @@
-const createError  = require('http-errors');
-const express      = require('express');
-const path         = require('path');
-const cookieParser = require('cookie-parser');
-const bodyParser   = require('body-parser');
-const flash        = require('connect-flash');
-const session      = require('express-session');
-const passport     = require('passport');
-const logger       = require('morgan');
-const mongoose     = require('mongoose');
+const createError    = require('http-errors');
+const express        = require('express');
+const expressLayouts = require('express-ejs-layouts');
+const path           = require('path');
+const cookieParser   = require('cookie-parser');
+const bodyParser     = require('body-parser');
+const flash          = require('connect-flash');
+const session        = require('express-session');
+const passport       = require('passport');
+const logger         = require('morgan');
+const mongoose       = require('mongoose');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-
-// initiate the app
 const app = express();
 
 // passport config
 require('./config/passport')(passport);
 
+// configure mongoose
+mongoose
+  .connect(
+    'mongodb://localhost/local',
+    { useNewUrlParser: true }
+  )
+  .catch(err => console.log(err));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.use(expressLayouts);
+app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -46,19 +52,15 @@ app.use(flash());
 
 // global vars
 app.use((req,res, next) => {
-  res.locals.success_msg = req.flash('sucess_msg');
+  res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
   next();
 });
 
-// configure mongoose
-mongoose.connect('mongodb://localhost/local', { useNewUrlParser: true })
-  .catch(err => console.log(err));
-
 // routes
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
 
 // catch 404 and forward to error handler
 // app.use((req, res, next) => {
