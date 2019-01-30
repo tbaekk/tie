@@ -3,7 +3,7 @@ const bycrpt   = require('bcrypt');
 const passport = require('passport');
 const router   = express.Router();
 // load User model
-const User = require('../models/User');
+const User = require('../models/user');
 
 /* GET users listing. */
 router.get('/login', (req, res, next) => res.render('login'));
@@ -80,12 +80,19 @@ router.post('/register', (req, res) => {
   }
 });
 
+// Login
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next);
+});
+
+// Logout
+router.get('/logout', (req,res) => {
+  req.logout();
+  res.redirect('/');
 });
 
 module.exports = router;
