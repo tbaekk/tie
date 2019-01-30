@@ -32,7 +32,8 @@ UserSchema.statics.generateFakeUsers = function (n = 50) {
   }
   this.insertMany(fakeUsers)
     .then(bulkUsers => {
-      savedFakeUsers.push(...bulkUsers.insertedIds);
+      bulkUsers.forEach((user) => savedFakeUsers.push(user.id));
+      // savedFakeUsers.push(...bulkUsers.insertedIds);
     })
     .catch(err => console.log(err));
 }
@@ -53,8 +54,5 @@ try {
 } catch(e) {
   User = mongoose.model('User');
 }
-
-// Test
-User.generateFakeUsers(10);
 
 module.exports = User;

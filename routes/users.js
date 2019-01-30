@@ -3,7 +3,7 @@ const bycrpt   = require('bcrypt');
 const passport = require('passport');
 const router   = express.Router();
 // load User model
-const User = require('../models/User');
+const User = require('../models/user');
 
 /* GET users listing. */
 router.get('/login', (req, res, next) => res.render('login'));
