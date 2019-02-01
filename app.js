@@ -62,6 +62,7 @@ app.use((req,res, next) => {
 // routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
+app.use('/dashboard', require('./routes/dashboard'));
 
 // catch 404 and forward to error handler
 // app.use((req, res, next) => {
