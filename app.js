@@ -11,6 +11,11 @@ const logger         = require('morgan');
 const mongoose       = require('mongoose');
 const fileUpload     = require('express-fileupload');
 
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const dashboardRouter = require('./routes/dashboard');
+const gamesRouter = require('./routes/games');
+
 const app = express();
 
 // passport config
@@ -66,10 +71,10 @@ app.use((req,res, next) => {
 });
 
 // routes
-app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
-app.use('/dashboard', require('./routes/dashboard'));
-app.use('/game', require('./routes/games'));
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/dashboard', dashboardRouter);
+app.use('/game', gamesRouter);
 
 // catch 404 and forward to error handler
 // app.use((req, res, next) => {
