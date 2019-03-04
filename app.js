@@ -9,6 +9,7 @@ const session        = require('express-session');
 const passport       = require('passport');
 const logger         = require('morgan');
 const mongoose       = require('mongoose');
+const fileUpload     = require('express-fileupload');
 
 const app = express();
 
@@ -18,7 +19,7 @@ require('./config/passport')(passport);
 // configure mongoose
 mongoose
   .connect(
-    'mongodb://localhost/local',
+    'mongodb://tie:tie2019!@ds111963.mlab.com:11963/tie-db',
     { useNewUrlParser: true }
   )
   .catch(err => console.log(err));
@@ -35,6 +36,11 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(fileUpload({
+  useTempFiles : true,
+  tempFileDir : '/tmp/'
+}));
 
 // express session
 app.use(session({
@@ -63,6 +69,7 @@ app.use((req,res, next) => {
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/dashboard', require('./routes/dashboard'));
+app.use('/game', require('./routes/games'));
 
 // catch 404 and forward to error handler
 // app.use((req, res, next) => {
