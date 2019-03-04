@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const faker = require('faker');
+
 const GameSchema = mongoose.Schema({
     title: {
         type: String,
@@ -27,35 +27,6 @@ const GameSchema = mongoose.Schema({
         default: Date.now
     }
 });
-
-const savedFakeGames = [];
-
-GameSchema.statics.generateFakeGames = function (n = 5) {
-    const fakeGames = [];
-    for (let i = 0; i < n; i++) {
-        fakeGames.push({
-            title: faker.commerce.productName(),
-            creator: faker.internet.userName(),
-            thumbnail: faker.image.abstract(),
-        });
-    }
-    this.insertMany(fakeGames)
-        .then(bulkGames => {
-            bulkGames.forEach((user) => savedFakeGames.push(user.id));
-            // savedFakeGames.push(...bulkGames.insertedIds);
-        })
-        .catch(err => console.log(err));
-}
-
-GameSchema.statics.clearFakeGames = function () {
-    let id;
-    while (savedFakeGames.length !== 0) {
-        id = savedFakeGames.pop();
-        this.deleteOne({
-            _id: id
-        });
-    }
-}
 
 let Game = null;
 try {
