@@ -1,6 +1,6 @@
 const createError    = require('http-errors');
 const express        = require('express');
-const expressLayouts = require('express-ejs-layouts');
+// const expressLayouts = require('express-ejs-layouts');
 const path           = require('path');
 const cookieParser   = require('cookie-parser');
 const bodyParser     = require('body-parser');
@@ -31,7 +31,7 @@ mongoose
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.use(expressLayouts);
+// app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
