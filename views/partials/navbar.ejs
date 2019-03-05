@@ -1,0 +1,17 @@
+<!-- Navigation -->
+<nav class="navbar navbar-light bg-light static-top">
+    <div class="container">
+        <a href="/" class="navbar-brand">Tie</a>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        </form>
+        <div class="navbar-right">
+            <%if(login) { %>
+            <a href="/dashboard" class="btn btn-primary my-2 my-sm-0">My Page</a>
+            <a href="/users/logout" class="btn btn-primary my-2 my-sm-0">Sign Out</a>
+            <% } else { %>
+            <a href="/users/login" class="btn btn-primary my-2 my-sm-0">Sign In</a>
+            <% } %>
+        </div>
+    </div>
+</nav>
