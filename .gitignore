@@ -84,4 +84,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # garbage clean
-/client/assets/images/tmp/
+/tmp/*

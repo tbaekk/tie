@@ -1,15 +1,15 @@
-const createError    = require('http-errors');
-const express        = require('express');
+const createError  = require('http-errors');
+const express      = require('express');
 // const expressLayouts = require('express-ejs-layouts');
-const path           = require('path');
-const cookieParser   = require('cookie-parser');
-const bodyParser     = require('body-parser');
-const flash          = require('connect-flash');
-const session        = require('express-session');
-const passport       = require('passport');
-const logger         = require('morgan');
-const mongoose       = require('mongoose');
-const fileUpload     = require('express-fileupload');
+const path         = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser   = require('body-parser');
+const flash        = require('connect-flash');
+const session      = require('express-session');
+const passport     = require('passport');
+const logger       = require('morgan');
+const mongoose     = require('mongoose');
+const fileUpload   = require('express-fileupload');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -24,7 +24,7 @@ require('./config/passport')(passport);
 // configure mongoose
 mongoose
   .connect(
-    'mongodb://tie:tie2019!@ds111963.mlab.com:11963/tie-db',
+    'mongodb+srv://tie-user:tie2019@tie-m9jsk.mongodb.net/tie?retryWrites=true',
     { useNewUrlParser: true }
   )
   .catch(err => console.log(err));
@@ -50,6 +50,8 @@ app.use(fileUpload({
 // express session
 app.use(session({
   secret: 'secret',
+  cookie: { maxAge: 60000 },
+  rolling: true,
   resave: true,
   saveUninitialized: true
 }));
