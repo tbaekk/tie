@@ -1,37 +1,34 @@
-const createError  = require('http-errors');
-const express      = require('express');
-// const expressLayouts = require('express-ejs-layouts');
-const path         = require('path');
+const path = require('path');
+const flash = require('connect-flash');
+const logger = require('morgan');
+const express = require('express');
+const session = require('express-session');
+const passport = require('passport');
+const mongoose = require('mongoose');
+const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
-const bodyParser   = require('body-parser');
-const flash        = require('connect-flash');
-const session      = require('express-session');
-const passport     = require('passport');
-const logger       = require('morgan');
-const mongoose     = require('mongoose');
-const fileUpload   = require('express-fileupload');
+const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload'); // may dont need this
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const dashboardRouter = require('./routes/dashboard');
-const gamesRouter = require('./routes/games');
+const { DB_URI } = require('./server/config/prod');
+
+const indexRouter = require('./server/routes/index'),
+      usersRouter = require('./server/routes/users'),
+      dashboardRouter = require('./server/routes/dashboard'),
+      gamesRouter = require('./server/routes/games');
 
 const app = express();
 
 // passport config
-require('./config/passport')(passport);
+require('./server/config/passport')(passport);
 
 // configure mongoose
 mongoose
-  .connect(
-    'mongodb+srv://tie-user:tie2019@tie-m9jsk.mongodb.net/tie?retryWrites=true',
-    { useNewUrlParser: true }
-  )
+  .connect(DB_URI,{ useNewUrlParser: true })
   .catch(err => console.log(err));
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-// app.use(expressLayouts);
+app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
