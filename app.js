@@ -10,15 +10,15 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload'); // may dont need this
 
-const indexRouter = require('./server/routes/index'),
-      usersRouter = require('./server/routes/users'),
-      dashboardRouter = require('./server/routes/dashboard'),
-      gamesRouter = require('./server/routes/games');
+const indexRouter = require('./routes/index'),
+      usersRouter = require('./routes/users'),
+      dashboardRouter = require('./routes/dashboard'),
+      gamesRouter = require('./routes/games');
 
 const app = express();
 
 // passport config
-require('./server/config/passport')(passport);
+require('./config/passport')(passport);
 
 // dotenv config
 require('dotenv').config();
@@ -29,7 +29,7 @@ mongoose
   .catch(err => console.log(err));
 
 // view engine setup
-app.set('views', path.join(__dirname, 'src/views'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
