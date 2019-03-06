@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const fileUpload = require('express-fileupload'); // may dont need this
 
 const config = require('./config/prod');
 
@@ -18,6 +17,7 @@ const indexRouter = require('./routes/index'),
       gamesRouter = require('./routes/games');
 
 const app = express();
+const webSocket = require('express-ws')(app);
 
 // passport config
 require('./config/passport')(passport);
@@ -72,6 +72,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/game', gamesRouter);
+app.use('/ws', wsRouter);
 
 // catch 404 and forward to error handler
 // app.use((req, res, next) => {
