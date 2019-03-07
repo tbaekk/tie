@@ -10,6 +10,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload'); // may dont need this
 
+const config = require('./config/prod');
+
 const indexRouter = require('./routes/index'),
       usersRouter = require('./routes/users'),
       dashboardRouter = require('./routes/dashboard'),
@@ -25,7 +27,7 @@ require('dotenv').config();
 
 // configure mongoose
 mongoose
-  .connect(process.env.DB_URI,{ useNewUrlParser: true })
+  .connect(config.DB_URI,{ useNewUrlParser: true })
   .catch(err => console.log(err));
 
 // view engine setup
@@ -40,15 +42,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(fileUpload({
-//   useTempFiles : true,
-//   tempFileDir : '/tmp/'
-// }));
-
 // express session
 app.use(session({
   secret: 'secret',
-  cookie: { maxAge: 60000 },
+  cookie: { maxAge: 6000000000 },
   rolling: true,
   resave: true,
   saveUninitialized: true

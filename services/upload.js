@@ -1,17 +1,12 @@
 const aws = require('aws-sdk');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
-const { AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID } = require('../config/prod');
-
-require('dotenv').config();
-
-console.log(process.env.AWS_SECRET_ACCESS_KEY);
-console.log(process.env.AWS_ACCESS_KEY_ID);
+const config = require('../config/prod');
 
 // configure aws
 aws.config.update({
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: config.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: config.AWS_ACCESS_KEY_ID,
   region: 'us-east-2'
 });
 
@@ -35,7 +30,9 @@ const upload = multer({
       cb(null, {fieldName: file.fieldname});
     },
     key: function (req, file, cb) {
-      cb(null, Date.now().toString())
+      const foldername = req.body.title + '-' + req.user.id;
+      const fullpath = foldername + '/' + file.originalname;
+      cb(null, fullpath);
     }
   })
 });

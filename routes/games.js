@@ -6,23 +6,41 @@ const { ensureAuthenticated } = require('../config/auth');
 // load model
 const Game = require('../models/game');
 
-const singleUpload = upload.single('file');
+const multiUpload = upload.fields([
+  { name: 'sourceFiles', maxCount: 30 },
+  { name: 'imageFile', maxCount: 1 }
+]);
 
 router.get('/new', ensureAuthenticated, (req, res) => {
   res.render('upload');
 });
 
-router.post('/upload', upload.single('file'), (req, res) => {
-  // singleUpload(req, res, function(err) {
-  //   console.log(req.file);
-  //   if (err) {
-  //     return res.status(422).send({errors: [{title: 'Image Upload Error', detail: err.message}]});
-  //   }
+router.post('/upload', ensureAuthenticated, (req, res) => {
+  multiUpload(req, res, function(err) {
+    if (err) {
+      return res.status(422).send({errors: [{title: 'Image Upload Error', detail: err.message}]});
+    }
+    const { title, description } = req.body;
+    const { creator } = { creator: req.user.id };
 
-  //   return res.json({'imageUrl': req.file.location});
-  // });
-  res.send(req.file);
-  console.log(req.file);
+    let thumbnail;
+    if (req.files.imageFile) {
+      thumbnail = req.files.imageFile[0].location;
+    }
+
+    const newGame = new Game({
+      title,
+      creator,
+      description,
+      thumbnail
+    });
+    newGame
+      .save()
+      .then(game => {
+        res.redirect('/dashboard');
+      })
+      .catch(err => console.log(err));
+  });
 });
 
 module.exports = router;
