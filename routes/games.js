@@ -59,7 +59,7 @@ router.post('/upload', ensureAuthenticated, (req, res) => {
 router.get('/:gameTitle', (req, res) => {
   Game.findOne({title: req.gameTitle})
     .then(game => {
-      res.render('tetris', { game });
+      res.render('game', { game });
     });
 });
 

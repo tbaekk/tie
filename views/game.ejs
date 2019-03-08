@@ -2,31 +2,16 @@
 <html lang="en">
 
 <head>
-    <title>Tetris</title>
+    <title><%= game.displayTitle %></title>
     <% include partials/commonMeta %>
     <% include partials/commonCss %>
-    <link rel="stylesheet" href="stylesheers/tetris/main.css" />
 </head>
 
 <body>
     <% include partials/navbar %>
 
-    <body>
-        <template id="player-template">
-            <div class="player">
-                <h1 class="score"></h1>
-                <canvas class="tetris" width="240" height="400" />
-            </div>
-        </template>
+    <iframe src="https://tie-cs-494-demo.s3.us-east-2.amazonaws.com/<%= game.displayTitle %>-<%= game.id %>/index.html"></iframe>
 
-        <% include partials/commonJs %>
-        <script src="javascripts/tetris/tetrisManager.js"></script>
-        <script src="javascripts/tetris/connectionManager.js"></script>
-        <script src="javascripts/tetris/events.js"></script>
-        <script src="javascripts/tetris/arena.js"></script>
-        <script src="javascripts/tetris/player.js"></script>
-        <script src="javascripts/tetris/tetris.js"></script>
-        <script src="javascripts/tetris/main.js"></script>
-    </body>
-
+    <% include partials/footer %>
+    <% include partials/commonJs %>
 </html>
