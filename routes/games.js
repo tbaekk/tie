@@ -43,8 +43,8 @@ router.post('/upload', ensureAuthenticated, (req, res) => {
   });
 });
 
-router.get('/:gameId', (req, res) => {
-  Game.findOne({_id: req.gameId})
+router.get('/:gameTitle', (req, res) => {
+  Game.findOne({title: req.gameTitle})
     .then(game => {
       res.render('tetris', { game });
     });
