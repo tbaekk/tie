@@ -1,9 +1,9 @@
 module.exports = function(httpServer) {
-    const WebSocketServer = require('ws');
+    const WebSocket = require('ws');
     const Session = require('./session');
     const Client = require('./client');
 
-    const server = new WebSocketServer(httpServer);
+    const server = new WebSocket.Server({server: httpServer});
 
     const sessions = new Map;
 
