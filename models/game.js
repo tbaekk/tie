@@ -13,18 +13,16 @@ const GameSchema = mongoose.Schema({
         type: String,
         default: 'http://lorempixel.com/640/480/cats/' 
     },
-    // htmlSources: [{
-
-    // }],
-    // cssSources: [{
-
-    // }],
-    // jsSources: [{
-
-    // }],
+    description: {
+        type: String,
+    },
     date: {
         type: Date,
         default: Date.now
+    },
+    isValidated: {
+        type: Boolean,
+        default: false
     }
 });
 

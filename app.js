@@ -1,37 +1,37 @@
-const createError    = require('http-errors');
-const express        = require('express');
-// const expressLayouts = require('express-ejs-layouts');
-const path           = require('path');
-const cookieParser   = require('cookie-parser');
-const bodyParser     = require('body-parser');
-const flash          = require('connect-flash');
-const session        = require('express-session');
-const passport       = require('passport');
-const logger         = require('morgan');
-const mongoose       = require('mongoose');
-const fileUpload     = require('express-fileupload');
+const path = require('path');
+const flash = require('connect-flash');
+const logger = require('morgan');
+const express = require('express');
+const session = require('express-session');
+const passport = require('passport');
+const mongoose = require('mongoose');
+const createError = require('http-errors');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload'); // may dont need this
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const dashboardRouter = require('./routes/dashboard');
-const gamesRouter = require('./routes/games');
+const config = require('./config/prod');
+
+const indexRouter = require('./routes/index'),
+      usersRouter = require('./routes/users'),
+      dashboardRouter = require('./routes/dashboard'),
+      gamesRouter = require('./routes/games');
 
 const app = express();
 
 // passport config
 require('./config/passport')(passport);
 
+// dotenv config
+require('dotenv').config();
+
 // configure mongoose
 mongoose
-  .connect(
-    'mongodb://tie:tie2019!@ds111963.mlab.com:11963/tie-db',
-    { useNewUrlParser: true }
-  )
+  .connect(config.DB_URI,{ useNewUrlParser: true })
   .catch(err => console.log(err));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
@@ -42,14 +42,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(fileUpload({
-  useTempFiles : true,
-  tempFileDir : '/tmp/'
-}));
-
 // express session
 app.use(session({
   secret: 'secret',
+  cookie: { maxAge: 6000000000 },
+  rolling: true,
   resave: true,
   saveUninitialized: true
 }));
