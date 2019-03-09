@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const fileUpload = require('express-fileupload'); // may dont need this
 
 const config = require('./config/prod');
 

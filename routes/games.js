@@ -23,24 +23,44 @@ router.post('/upload', ensureAuthenticated, (req, res) => {
     const { title, description } = req.body;
     const { creator } = { creator: req.user.id };
 
+    const displayTitle   = title;
+    const processedTitle = title.toLowerCase();
+
     let thumbnail;
     if (req.files.imageFile) {
       thumbnail = req.files.imageFile[0].location;
     }
 
-    const newGame = new Game({
-      title,
-      creator,
-      description,
-      thumbnail
-    });
-    newGame
-      .save()
+    Game
+      .findOne({ title: processedTitle })
       .then(game => {
-        res.redirect('/dashboard');
+        if (game) {
+          console.log(" Game already exists with provided title. Please enter a different name");
+        } else {
+          const newGame = new Game({
+            title: processedTitle,
+            displayTitle,
+            creator,
+            description,
+            thumbnail
+          });
+          newGame
+            .save()
+            .then(game => {
+              res.redirect('/dashboard');
+            })
+            .catch(err => console.log(err));
+        }
       })
       .catch(err => console.log(err));
   });
+});
+
+router.get('/:gameTitle', (req, res) => {
+  Game.findOne({title: req.params.gameTitle})
+    .then(game => {
+      res.render('game', { game });
+    });
 });
 
 module.exports = router;

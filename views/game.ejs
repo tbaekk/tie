@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title><%= game.displayTitle %></title>
+    <% include partials/commonMeta %>
+    <% include partials/commonCss %>
+</head>
+
+<body>
+    <% include partials/navbar %>
+    
+    <iframe name="gamebox" src="https://s3.us-east-2.amazonaws.com/tie-cs-494-demo/<%= game.title %>/index.html" width="750px" height="750px"></iframe>
+    
+    <% include partials/commonJs %>
+    <% include partials/footer %>
+</html>

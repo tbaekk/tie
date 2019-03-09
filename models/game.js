@@ -5,6 +5,10 @@ const GameSchema = mongoose.Schema({
         type: String,
         required: true, 
     },
+    displayTitle: {
+        type: String,
+        required: true, 
+    },
     creator: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
