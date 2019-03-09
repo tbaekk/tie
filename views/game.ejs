@@ -9,9 +9,9 @@
 
 <body>
     <% include partials/navbar %>
-
-    <iframe src="https://tie-cs-494-demo.s3.us-east-2.amazonaws.com/<%= game.displayTitle %>-<%= game.id %>/index.html"></iframe>
-
-    <% include partials/footer %>
+    
+    <iframe src="https://tie-cs-494-demo.s3.us-east-2.amazonaws.com/<%= game.title %>/index.html" width="750px" height="750px"></iframe>
+    
     <% include partials/commonJs %>
+    <% include partials/footer %>
 </html>
