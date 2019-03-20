@@ -1,13 +1,7 @@
 class ConnectionManager {
     constructor(gameFrame) {
         this.conn = null;
-        this.gFrame = gameFrame;
-
-        window.addEventListener('message', frameListener);
-    }
-
-    frameListener(msg) {
-        send(msg.data);
+        this.gFrame = gameFrame;        
     }
 
     connect(address) {
@@ -15,7 +9,9 @@ class ConnectionManager {
 
         this.conn.addEventListener('open', () => {
             console.log('Connection established');
-            this.initSession();
+            this.gFrame.postMessage({
+                type: 'open'
+            }, '*');
         });
 
         this.conn.addEventListener('message', event => {
@@ -24,16 +20,18 @@ class ConnectionManager {
         });
     }
 
-    initSession() {
+    initSession(state) {
         const sessionId = window.location.hash.split('#')[1];
         if (sessionId) {
             this.send({
                 type: 'join-session',
                 id: sessionId,
+                state
             });
         } else {
             this.send({
                 type: 'create-session',
+                state
             });
         }
     }
@@ -43,7 +41,7 @@ class ConnectionManager {
         if (data.type === 'session-created') {
             window.location.hash = data.id;
         } else {
-            gameFrame.postMessage(data, location.origin);
+            this.gFrame.postMessage(data, '*');
         }
     }
 
