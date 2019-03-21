@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const favicon = require('serve-favicon');
 
 const config = require('./config/prod');
 
@@ -17,6 +18,7 @@ const indexRouter = require('./routes/index'),
       gamesRouter = require('./routes/games');
 
 const app = express();
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // passport config
 require('./config/passport')(passport);
