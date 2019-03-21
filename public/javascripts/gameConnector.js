@@ -11,5 +11,15 @@ window.addEventListener('message', (msg) => {
         connManager.send(msg.data);
     }
 });
+
+const linkBox = document.querySelector('#linkBox');
+const shareButton = document.querySelector('#shareButton');
+
+shareButton.addEventListener('click', (eve) => {
+    linkBox.value = location.href;
+    linkBox.select();
+    document.execCommand('copy');
+});
+
 // gameFrame.onload = () => {
 // };
