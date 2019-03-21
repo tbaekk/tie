@@ -93,9 +93,8 @@ module.exports = function(httpServer) {
                 if (session.clients.size === 0) {
                     sessions.delete(session.id);
                 }
+                broadcastSession(session);
             }
-
-            broadcastSession(session);
 
             console.log(sessions);
         });
