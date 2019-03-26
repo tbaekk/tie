@@ -2,7 +2,7 @@ const gameFrame = window.frames.gamebox;
 let connManager = new ConnectionManager(gameFrame);
 
 console.log('Trying to connect to');
-connManager.connect("ws://localhost:3000");
+connManager.connect("ws://18.218.252.59:3000");
 
 window.addEventListener('message', (msg) => {
     if (msg.data.type === 'init-state') {
